@@ -3,11 +3,11 @@
 import re as regex
 from pyspark.sql import SparkSession
 
+
 # 이 함수는 입력된 텍스트를 단어로 분리하는 역할을 합니다.
 # 정규표현식 \W+를 사용하여 비문자(non-word) 문자열이나 공백 등을 기준으로 텍스트를 분리합니다.
 def normalizeWords(text):
     return regex.compile(r"\W+", regex.UNICODE).split(text)
-
 
 spark = SparkSession.builder.master("local").appName("WordCounter").getOrCreate()
 spark.sparkContext.setLogLevel("ERROR")
